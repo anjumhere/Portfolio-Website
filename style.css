@@ -1,0 +1,490 @@
+@import url("https://fonts.googleapis.com/css2?family=Italianno&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Mona+Sans:ital,wght@0,200..900;1,200..900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Merienda:wght@300..900&display=swap");
+
+/* ── Reset ── */
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 16px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  scroll-behavior: smooth;
+}
+
+/* ── Body ── */
+body {
+  background-color: #edb33c;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  font-family: "Mona Sans", sans-serif;
+  color: #2c2c2c;
+  min-height: 100vh;
+}
+
+/* ── Main page card ── */
+.main-page {
+  width: 90%;
+  max-width: 1400px;
+  min-height: 100vh;
+  background-color: #f8f7f1;
+  box-shadow: 0 12px 48px rgba(0, 0, 0, 0.12);
+  display: flex;
+  flex-direction: column;
+}
+
+/* ── Generic container ── */
+.container {
+  width: 100%;
+  padding: 0 60px;
+}
+
+/* ======================================
+   HEADER
+====================================== */
+header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background-color: #f8f7f1;
+  border-bottom: 1px solid rgb(231, 229, 229);
+  height: 13vh;
+  display: flex;
+  align-items: center;
+}
+
+header .container {
+  display: flex;
+  align-items: center;
+  height: 80px;
+}
+
+/* ── Logo (left) ── */
+.logo {
+  font-family: "Italianno", serif;
+  font-size: 42px;
+  font-weight: 400;
+  color: #2a6f6c;
+  white-space: nowrap;
+  line-height: 1;
+  text-align: left;
+  cursor: pointer;
+}
+
+/* ── Nav (center) ── */
+nav {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 2;
+  margin-left: 100px;
+}
+
+nav ul {
+  list-style: none;
+  display: flex;
+  align-items: center;
+  gap: 50px;
+}
+
+nav ul li {
+  font-family: "Mona Sans", sans-serif;
+  text-transform: uppercase;
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 1.5px;
+  color: #3a3a3a;
+  cursor: pointer;
+  transition: color 0.3s ease;
+  white-space: nowrap;
+}
+
+nav ul li a {
+  color: inherit;
+  transition: color 0.3s ease;
+  text-decoration: none;
+}
+
+nav ul li:hover,
+nav ul li a:hover {
+  color: #2a6f6c;
+}
+
+/* Active / first item */
+nav ul li:first-child {
+  color: #2a6f6c;
+  font-weight: 600;
+}
+
+/* ── Border wrapper ── */
+.border {
+  border-left: 2px solid #2a6f6c;
+  border-right: 2px solid #2a6f6c;
+  border-radius: 20px;
+  padding: 4px 18px;
+  overflow: hidden;
+  transition: background-color 0.3s ease;
+}
+
+/* ── Email (right) ── */
+.email {
+  font-family: "Mona Sans", sans-serif;
+  font-weight: 400;
+  font-size: 12px;
+  letter-spacing: 0.3px;
+  color: #555;
+  flex: 1;
+  text-align: right;
+  white-space: nowrap;
+  transition: color 0.3s ease;
+}
+
+a {
+  text-decoration: none;
+  color: #3a3a3a;
+}
+
+.email:hover {
+  color: #2a6f6c;
+}
+
+#icon {
+  margin-left: 8px;
+  vertical-align: middle;
+  color: #2a6f6c;
+  transition: transform 0.3s ease;
+  font-size: 20px;
+}
+
+#icon:hover {
+  transform: scale(1.15);
+}
+
+/* ======================================
+   PROFILE SECTION
+   MODIFY THESE TOP VALUES TO POSITION TEXT BELOW RINGS
+====================================== */
+.profile {
+  position: relative;
+  width: 100%;
+  max-width: 1000px;
+  margin: auto;
+}
+
+/* Background image with notebook rings */
+.profile img:nth-child(3) {
+  width: 100%;
+  max-width: 1000px;
+  display: block;
+}
+
+/* 
+  INTRO TEXT POSITION 
+  Change the "top" value to move text up/down
+  Change the "left" value to move text left/right
+*/
+.intro {
+  position: absolute;
+  top: 20%; /* MODIFY THIS - Increase to move DOWN, decrease to move UP */
+  left: 10%; /* MODIFY THIS - Increase to move RIGHT, decrease to move LEFT */
+  line-height: 1;
+  z-index: 5;
+}
+
+.intro h1 {
+  color: #2a6f6c;
+  font-size: 50px; /* MODIFY THIS to change text size */
+  font-family: "Mona Sans", serif;
+  font-weight: 400;
+}
+
+.intro h1 span {
+  display: block;
+}
+
+/* 
+  INFO BOX POSITION 
+  Change the "top" value to move text up/down
+  Change the "left" value to move text left/right
+*/
+.info {
+  position: absolute;
+  top: 25%; /* MODIFY THIS - Increase to move DOWN, decrease to move UP */
+  left: 65%; /* MODIFY THIS - Increase to move RIGHT, decrease to move LEFT */
+  border-left: 2px solid #2a6f6c;
+  padding: 4px;
+  z-index: 5;
+}
+
+.info h2 {
+  color: #edb33c;
+  font-size: 20px; /* MODIFY THIS to change text size */
+  font-family: "Mona Sans", serif;
+  font-weight: 300;
+}
+
+.info span {
+  display: block;
+}
+
+/* 
+  PERSON IMAGE POSITION 
+  Change the "top" value to move image up/down
+*/
+.profile .person {
+  position: absolute;
+  top: 30%; /* MODIFY THIS - Increase to move DOWN, decrease to move UP */
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 10;
+  width: 400px; /* MODIFY THIS to change image size */
+}
+
+/* ======================================
+   TABLET (768px - 1024px)
+====================================== */
+@media (max-width: 1024px) {
+  .container {
+    padding: 0 40px;
+  }
+
+  nav {
+    margin-left: 50px;
+  }
+
+  nav ul {
+    gap: 30px;
+  }
+
+  .intro h1 {
+    font-size: 35px;
+  }
+
+  .info h2 {
+    font-size: 10px;
+  }
+
+  .profile .person {
+    width: 360px;
+  }
+}
+
+/* ======================================
+   MOBILE (481px - 768px)
+====================================== */
+@media (max-width: 768px) {
+  .main-page {
+    width: 100%;
+  }
+
+  header {
+    height: auto;
+    padding: 10px 0;
+  }
+
+  header .container {
+    flex-direction: column;
+    height: auto;
+    padding: 16px 20px;
+    gap: 12px;
+  }
+
+  .logo {
+    flex: unset;
+    text-align: center;
+    font-size: 32px;
+  }
+
+  .email {
+    flex: unset;
+    text-align: center;
+    font-size: 11px;
+  }
+
+  nav {
+    flex: unset;
+    width: 100%;
+    margin-left: 0;
+  }
+
+  nav ul {
+    gap: 16px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  nav ul li {
+    font-size: 11px;
+    letter-spacing: 1px;
+  }
+
+  .container {
+    padding: 0 16px;
+  }
+
+  /* Profile section - percentages stay same */
+  .profile {
+    padding: 0 10px;
+  }
+
+  /* Text sizes for mobile */
+  .intro h1 {
+    font-size: 32px;
+  }
+
+  .info h2 {
+    font-size: 11px;
+  }
+
+  .profile .person {
+    width: 280px;
+  }
+}
+
+/* ======================================
+   SMALL MOBILE (360px - 480px)
+====================================== */
+@media (max-width: 480px) {
+  header .container {
+    padding: 12px 16px;
+  }
+
+  .logo {
+    font-size: 28px;
+  }
+
+  .email {
+    font-size: 10px;
+  }
+
+  #icon {
+    font-size: 16px;
+  }
+
+  nav ul {
+    gap: 12px;
+  }
+
+  nav ul li {
+    font-size: 10px;
+  }
+
+  .border {
+    padding: 3px 12px;
+  }
+
+  /* Text sizes for small mobile */
+  .intro h1 {
+    font-size: 24px;
+  }
+
+  .info h2 {
+    font-size: 12px;
+  }
+
+  .profile .person {
+    width: 200px;
+  }
+}
+
+/* ======================================
+   EXTRA SMALL MOBILE (320px - 360px)
+====================================== */
+@media (max-width: 360px) {
+  .logo {
+    font-size: 24px;
+  }
+
+  .email {
+    font-size: 9px;
+  }
+
+  nav ul li {
+    font-size: 9px;
+    letter-spacing: 0.8px;
+  }
+
+  .border {
+    padding: 2px 10px;
+  }
+
+  /* Text sizes for extra small mobile */
+  .intro h1 {
+    font-size: 20px;
+  }
+
+  .info h2 {
+    font-size: 11px;
+  }
+
+  .profile .person {
+    width: 160px;
+  }
+}
+
+/* ======================================
+   LANDSCAPE MODE
+====================================== */
+@media (max-width: 768px) and (orientation: landscape) {
+  header .container {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
+  .logo {
+    order: 1;
+  }
+
+  nav {
+    order: 2;
+    width: auto;
+  }
+
+  .email {
+    order: 3;
+  }
+
+  .intro h1 {
+    font-size: 22px;
+  }
+
+  .info h2 {
+    font-size: 13px;
+  }
+
+  .profile .person {
+    width: 180px;
+  }
+}
+
+/* ── Sleek Scrollbar ── */
+::-webkit-scrollbar {
+  width: 5px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f8f7f1;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #2a6f6c;
+  border-radius: 5px;
+  border: 2px solid #f8f7f1;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #1f5351;
+}
+
+@media (max-width: 768px) {
+  ::-webkit-scrollbar {
+    width: 3px;
+  }
+}
