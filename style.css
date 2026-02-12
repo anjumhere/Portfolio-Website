@@ -38,66 +38,105 @@ body {
   box-shadow: 0 12px 48px rgba(0, 0, 0, 0.12);
   display: flex;
   flex-direction: column;
+  position: relative;
+  background-image:
+    repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 2px,
+      rgba(0, 0, 0, 0.02) 2px,
+      rgba(0, 0, 0, 0.02) 3px
+    ),
+    repeating-linear-gradient(
+      90deg,
+      transparent,
+      transparent 2px,
+      rgba(0, 0, 0, 0.015) 2px,
+      rgba(0, 0, 0, 0.015) 3px
+    );
+  background-color: #f8f7f1;
+}
+
+.main-page::after {
+  content: "";
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  width: 80px;
+  height: 80px;
+  background: linear-gradient(
+    225deg,
+    rgba(255, 255, 255, 0.3) 0%,
+    rgba(0, 0, 0, 0.05) 50%,
+    transparent 50%
+  );
+  box-shadow: -2px 2px 8px rgba(0, 0, 0, 0.15);
+  border-radius: 0 0 0 100%;
+  pointer-events: none;
+  z-index: 1000;
 }
 
 /* ── Generic container ── */
 .container {
   width: 100%;
-  padding: 0 60px;
+  padding: 0 clamp(16px, 4vw, 60px);
 }
 
 /* ======================================
-   HEADER
-====================================== */
+         HEADER
+      ====================================== */
 header {
   position: sticky;
   top: 0;
   z-index: 100;
-  background-color: #f8f7f1;
+  background-color: rgba(248, 247, 241, 0.95);
+  backdrop-filter: blur(10px);
   border-bottom: 1px solid rgb(231, 229, 229);
-  height: 13vh;
   display: flex;
   align-items: center;
+  padding: 16px 0;
 }
 
 header .container {
   display: flex;
   align-items: center;
-  height: 80px;
+  gap: 20px;
 }
 
-/* ── Logo (left) ── */
 .logo {
   font-family: "Italianno", serif;
-  font-size: 42px;
+  font-size: clamp(28px, 3.5vw, 42px);
   font-weight: 400;
   color: #2a6f6c;
   white-space: nowrap;
   line-height: 1;
-  text-align: left;
   cursor: pointer;
+  transition: transform 0.3s ease;
+  flex-shrink: 0;
 }
 
-/* ── Nav (center) ── */
+.logo:hover {
+  transform: scale(1.05);
+}
+
 nav {
   display: flex;
   align-items: center;
   justify-content: center;
   flex: 2;
-  margin-left: 100px;
 }
 
 nav ul {
   list-style: none;
   display: flex;
   align-items: center;
-  gap: 50px;
+  gap: clamp(16px, 3vw, 50px);
 }
 
 nav ul li {
   font-family: "Mona Sans", sans-serif;
   text-transform: uppercase;
-  font-size: 12px;
+  font-size: clamp(10px, 1vw, 12px);
   font-weight: 500;
   letter-spacing: 1.5px;
   color: #3a3a3a;
@@ -117,13 +156,6 @@ nav ul li a:hover {
   color: #2a6f6c;
 }
 
-/* Active / first item */
-nav ul li:first-child {
-  color: #2a6f6c;
-  font-weight: 600;
-}
-
-/* ── Border wrapper ── */
 .border {
   border-left: 2px solid #2a6f6c;
   border-right: 2px solid #2a6f6c;
@@ -133,14 +165,22 @@ nav ul li:first-child {
   transition: background-color 0.3s ease;
 }
 
-/* ── Email (right) ── */
+.border:hover {
+  background-color: rgba(42, 111, 108, 0.05);
+}
+
+.border li {
+  color: #2a6f6c !important;
+  font-weight: 600 !important;
+}
+
 .email {
   font-family: "Mona Sans", sans-serif;
   font-weight: 400;
-  font-size: 12px;
+  font-size: clamp(10px, 1vw, 12px);
   letter-spacing: 0.3px;
   color: #555;
-  flex: 1;
+  flex-shrink: 0;
   text-align: right;
   white-space: nowrap;
   transition: color 0.3s ease;
@@ -160,7 +200,7 @@ a {
   vertical-align: middle;
   color: #2a6f6c;
   transition: transform 0.3s ease;
-  font-size: 20px;
+  font-size: clamp(16px, 1.5vw, 20px);
 }
 
 #icon:hover {
@@ -168,299 +208,475 @@ a {
 }
 
 /* ======================================
-   PROFILE SECTION
-   MODIFY THESE TOP VALUES TO POSITION TEXT BELOW RINGS
-====================================== */
+         PROFILE / HERO SECTION
+      ====================================== */
+main {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  padding: clamp(10px, 3vw, 40px) 0;
+}
+
 .profile {
   position: relative;
   width: 100%;
   max-width: 1000px;
-  margin: auto;
+  margin: 0 auto;
+  /* The notebook image dictates the size */
 }
 
-/* Background image with notebook rings */
-.profile img:nth-child(3) {
+/* ── Notebook background ── */
+.profile > img.notebook-bg {
   width: 100%;
-  max-width: 1000px;
   display: block;
+  height: auto;
+  /* Let the image define its natural aspect ratio */
 }
 
-/* 
-  INTRO TEXT POSITION 
-  Change the "top" value to move text up/down
-  Change the "left" value to move text left/right
-*/
+/* ── Intro text (top-left of notebook) ── */
 .intro {
   position: absolute;
-  top: 20%; /* MODIFY THIS - Increase to move DOWN, decrease to move UP */
-  left: 10%; /* MODIFY THIS - Increase to move RIGHT, decrease to move LEFT */
-  line-height: 1;
+  top: 38%;
+  left: 10%;
   z-index: 5;
+  max-width: 36%;
 }
 
 .intro h1 {
   color: #2a6f6c;
-  font-size: 50px; /* MODIFY THIS to change text size */
+  font-size: clamp(14px, 4vw, 50px);
   font-family: "Mona Sans", serif;
   font-weight: 400;
+  line-height: 1.15;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.08);
 }
 
 .intro h1 span {
   display: block;
 }
 
-/* 
-  INFO BOX POSITION 
-  Change the "top" value to move text up/down
-  Change the "left" value to move text left/right
-*/
+/* ── Info / quote (top-right of notebook) ── */
 .info {
   position: absolute;
-  top: 25%; /* MODIFY THIS - Increase to move DOWN, decrease to move UP */
-  left: 65%; /* MODIFY THIS - Increase to move RIGHT, decrease to move LEFT */
+  top: 30%;
+  right: 15%;
   border-left: 2px solid #2a6f6c;
-  padding: 4px;
+  padding: 4px 8px;
   z-index: 5;
+  max-width: 28%;
 }
 
 .info h2 {
-  color: #edb33c;
-  font-size: 20px; /* MODIFY THIS to change text size */
+  color: #d89020;
+  font-size: clamp(9px, 1.5vw, 18px);
   font-family: "Mona Sans", serif;
   font-weight: 300;
+  line-height: 1.45;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
 }
 
-.info span {
+.info h2 span {
   display: block;
 }
 
-/* 
-  PERSON IMAGE POSITION 
-  Change the "top" value to move image up/down
-*/
+/* ── Person image (center of notebook) ── */
 .profile .person {
   position: absolute;
-  top: 30%; /* MODIFY THIS - Increase to move DOWN, decrease to move UP */
+  top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   z-index: 10;
-  width: 400px; /* MODIFY THIS to change image size */
+  width: clamp(120px, 58%, 700px);
+  height: auto;
+  filter: drop-shadow(0 15px 25px rgba(0, 0, 0, 0.15));
+  transition: all 0.3s ease;
 }
 
+.profile .person:hover {
+  transform: translate(-50%, -52%) scale(1.02);
+  filter: drop-shadow(0 20px 35px rgba(0, 0, 0, 0.2));
+}
+
+/* ── LinkedIn section (left-mid) ── */
+.gmail {
+  position: absolute;
+  top: 78%;
+  left: 75%;
+  z-index: 5;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 6px;
+  border-bottom: 2px solid transparent;
+  transition: border-color 0.3s ease;
+  max-width: 30%;
+}
+.git {
+  position: absolute;
+  top: 81%;
+  left: 75%;
+  z-index: 5;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 6px;
+  border-bottom: 2px solid transparent;
+  transition: border-color 0.3s ease;
+  max-width: 30%;
+}
+
+.gmail:hover {
+  border-bottom: 2px solid #db735f;
+  cursor: pointer;
+}
+.git:hover {
+  border-bottom: 2px solid #db735f;
+  cursor: pointer;
+  color: #db735f;
+}
+.git a {
+  color: #3a3a3a;
+  font-size: clamp(8px, 1.2vw, 14px);
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+.git:hover a {
+  color: #db735f;
+}
+.gmail a {
+  color: #3a3a3a;
+  font-size: clamp(8px, 1.2vw, 14px);
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+
+.gmail:hover a {
+  color: #db735f;
+}
+
+#linked {
+  font-size: clamp(16px, 2.5vw, 30px);
+  color: rgb(18, 119, 202);
+  flex-shrink: 0;
+}
+
+/* ── Experience badge (bottom-left) ── */
+.exp {
+  position: absolute;
+  top: 60%;
+  left: 8%;
+  z-index: 5;
+  border: 3px solid #2a6f6c;
+  padding: clamp(4px, 0.8vw, 8px) clamp(8px, 1.5vw, 16px);
+  border-top-right-radius: 30px;
+  border-bottom-right-radius: 30px;
+  border-bottom-left-radius: 30px;
+  display: flex;
+  align-items: center;
+  gap: clamp(4px, 0.8vw, 10px);
+  background: rgba(248, 247, 241, 0.85);
+  backdrop-filter: blur(4px);
+}
+
+#star {
+  font-size: clamp(14px, 2.5vw, 30px);
+  color: #2a6f6c;
+  position: absolute;
+  top: clamp(-8px, -1.2vw, -13px);
+  left: clamp(-12px, -1.8vw, -21px);
+}
+
+.number {
+  font-size: clamp(1.6rem, 4vw, 4rem);
+  font-weight: 800;
+  color: #2a6f6c;
+  line-height: 1;
+}
+
+.text {
+  display: flex;
+  flex-direction: column;
+  font-weight: 600;
+  line-height: 1.1;
+}
+
+.text span {
+  font-size: clamp(0.45rem, 1vw, 1rem);
+  letter-spacing: clamp(0.5px, 0.2vw, 2px);
+  color: #2c2c2c;
+}
+
+.work {
+  width: 100%;
+  height: auto;
+  background-color: white;
+}
+
+.card1 {
+  width: 350px;
+  height: 100px;
+  border-radius: 10px;
+  text-align: center;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 10px;
+  gap: 30px;
+
+  border: 1px solid rgb(214, 213, 213);
+  margin: 10px 70px;
+}
+#design {
+  color: #edc049;
+  display: inline;
+  font-size: 40px;
+  /* border: 1px solid red; */
+}
+#design1 {
+  color: blue;
+  font-size: 40px;
+}
 /* ======================================
-   TABLET (768px - 1024px)
-====================================== */
+         RESPONSIVE: TABLET (≤ 1024px)
+      ====================================== */
 @media (max-width: 1024px) {
-  .container {
-    padding: 0 40px;
+  .intro {
+    top: 26%;
+    left: 15%;
+    max-width: 38%;
   }
-
-  nav {
-    margin-left: 50px;
+  .info {
+    top: 24%;
+    max-width: 28%;
   }
-
-  nav ul {
-    gap: 30px;
+  .gmail {
+    top: 56%;
   }
-
-  .intro h1 {
-    font-size: 35px;
-  }
-
-  .info h2 {
-    font-size: 10px;
-  }
-
-  .profile .person {
-    width: 360px;
+  .exp {
+    top: 70%;
   }
 }
 
 /* ======================================
-   MOBILE (481px - 768px)
-====================================== */
+         RESPONSIVE: SMALL TABLET (≤ 768px)
+      ====================================== */
 @media (max-width: 768px) {
   .main-page {
     width: 100%;
   }
 
   header {
-    height: auto;
     padding: 10px 0;
   }
 
   header .container {
-    flex-direction: column;
-    height: auto;
-    padding: 16px 20px;
-    gap: 12px;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 8px;
   }
 
   .logo {
-    flex: unset;
-    text-align: center;
-    font-size: 32px;
+    order: 1;
   }
-
   .email {
-    flex: unset;
-    text-align: center;
-    font-size: 11px;
+    order: 2;
   }
-
   nav {
-    flex: unset;
-    width: 100%;
-    margin-left: 0;
+    order: 3;
+    flex-basis: 100%;
   }
 
   nav ul {
-    gap: 16px;
-    flex-wrap: wrap;
     justify-content: center;
+    flex-wrap: wrap;
+    gap: 12px;
   }
 
-  nav ul li {
-    font-size: 11px;
-    letter-spacing: 1px;
+  .intro {
+    top: 24%;
+    left: 8%;
+    max-width: 36%;
   }
-
-  .container {
-    padding: 0 16px;
-  }
-
-  /* Profile section - percentages stay same */
-  .profile {
-    padding: 0 10px;
-  }
-
-  /* Text sizes for mobile */
   .intro h1 {
-    font-size: 32px;
+    line-height: 1.2;
   }
-
-  .info h2 {
-    font-size: 11px;
+  .info {
+    top: 24%;
+    max-width: 30%;
+    right: 5%;
   }
 
   .profile .person {
-    width: 280px;
+    width: clamp(100px, 35%, 300px);
+  }
+
+  .gmail {
+    top: 54%;
+    left: 8%;
+    max-width: 34%;
+  }
+  .exp {
+    top: 68%;
+    left: 8%;
+  }
+
+  .main-page::after {
+    width: 50px;
+    height: 50px;
   }
 }
 
 /* ======================================
-   SMALL MOBILE (360px - 480px)
-====================================== */
-@media (max-width: 480px) {
+         RESPONSIVE: MOBILE (≤ 560px)
+      ====================================== */
+@media (max-width: 560px) {
   header .container {
-    padding: 12px 16px;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px 16px;
   }
 
   .logo {
-    font-size: 28px;
+    order: 1;
   }
-
+  nav {
+    order: 2;
+    flex-basis: auto;
+  }
   .email {
-    font-size: 10px;
-  }
-
-  #icon {
-    font-size: 16px;
+    order: 3;
   }
 
   nav ul {
-    gap: 12px;
-  }
-
-  nav ul li {
-    font-size: 10px;
+    gap: 10px;
   }
 
   .border {
     padding: 3px 12px;
   }
 
-  /* Text sizes for small mobile */
-  .intro h1 {
-    font-size: 24px;
+  /* Shift everything to stay inside notebook */
+  .intro {
+    top: 22%;
+    left: 10%;
+    max-width: 34%;
   }
-
-  .info h2 {
-    font-size: 12px;
+  .info {
+    top: 22%;
+    right: 8%;
+    max-width: 26%;
   }
 
   .profile .person {
-    width: 200px;
+    width: clamp(80px, 30%, 200px);
+  }
+
+  .gmail {
+    top: 52%;
+    left: 10%;
+    max-width: 30%;
+  }
+  .exp {
+    top: 66%;
+    left: 10%;
+  }
+
+  .main-page::after {
+    width: 40px;
+    height: 40px;
   }
 }
 
 /* ======================================
-   EXTRA SMALL MOBILE (320px - 360px)
-====================================== */
+         RESPONSIVE: SMALL MOBILE (≤ 420px)
+      ====================================== */
+@media (max-width: 420px) {
+  .intro {
+    top: 22%;
+    left: 10%;
+    max-width: 32%;
+  }
+  .intro h1 {
+    line-height: 1.25;
+  }
+
+  .info {
+    top: 22%;
+    right: 8%;
+    max-width: 26%;
+  }
+  .info h2 {
+    line-height: 1.5;
+  }
+
+  .profile .person {
+    width: clamp(70px, 28%, 160px);
+  }
+
+  .gmail {
+    top: 50%;
+    left: 10%;
+  }
+  .exp {
+    top: 64%;
+    left: 10%;
+  }
+
+  .exp {
+    border-width: 2px;
+  }
+}
+
+/* ======================================
+         RESPONSIVE: EXTRA SMALL (≤ 360px)
+      ====================================== */
 @media (max-width: 360px) {
-  .logo {
-    font-size: 24px;
+  .intro {
+    top: 20%;
+    left: 10%;
+    max-width: 30%;
   }
-
-  .email {
-    font-size: 9px;
+  .info {
+    top: 20%;
+    right: 8%;
+    max-width: 24%;
   }
-
-  nav ul li {
-    font-size: 9px;
-    letter-spacing: 0.8px;
-  }
-
-  .border {
-    padding: 2px 10px;
-  }
-
-  /* Text sizes for extra small mobile */
-  .intro h1 {
-    font-size: 20px;
-  }
-
-  .info h2 {
-    font-size: 11px;
-  }
-
   .profile .person {
-    width: 160px;
+    width: 26%;
+  }
+  .gmail {
+    top: 48%;
+  }
+  .exp {
+    top: 62%;
   }
 }
 
 /* ======================================
-   LANDSCAPE MODE
-====================================== */
-@media (max-width: 768px) and (orientation: landscape) {
+         LANDSCAPE MODE (short height)
+      ====================================== */
+@media (max-height: 500px) and (orientation: landscape) {
   header .container {
     flex-direction: row;
+    flex-wrap: nowrap;
     justify-content: space-between;
   }
 
   .logo {
     order: 1;
   }
-
   nav {
     order: 2;
-    width: auto;
+    flex-basis: auto;
   }
-
   .email {
     order: 3;
   }
 
-  .intro h1 {
-    font-size: 22px;
-  }
-
-  .info h2 {
-    font-size: 13px;
-  }
-
-  .profile .person {
-    width: 180px;
+  main {
+    padding: 10px 0;
   }
 }
 
@@ -468,17 +684,15 @@ a {
 ::-webkit-scrollbar {
   width: 5px;
 }
-
 ::-webkit-scrollbar-track {
   background: #f8f7f1;
 }
-
 ::-webkit-scrollbar-thumb {
   background: #2a6f6c;
   border-radius: 5px;
   border: 2px solid #f8f7f1;
+  transition: background 0.3s ease;
 }
-
 ::-webkit-scrollbar-thumb:hover {
   background: #1f5351;
 }

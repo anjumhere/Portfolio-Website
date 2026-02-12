@@ -3,19 +3,18 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Portfolio</title>
-    <link rel="stylesheet" href="style.css" />
+    <title>Portfolio - Adnan Anjum</title>
     <link
       rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
-      integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     />
+    <link rel="stylesheet" href="style.css" />
   </head>
   <body>
     <div class="main-page">
-      <!-- ===== HEADER (Kept Intact) ===== -->
+      <!-- ===== HEADER ===== -->
       <header>
         <div class="container">
           <div class="logo">Anjum</div>
@@ -36,28 +35,79 @@
         </div>
       </header>
 
-      <!-- ===== MAIN (Clean Canvas) ===== -->
+      <!-- ===== MAIN ===== -->
       <main>
-        <div class="profile">
+        <div class="profile" id="home">
+          <!-- Intro heading -->
           <div class="intro">
-            <h1>HEY THERE, <span> I'M ADNAN </span></h1>
+            <h1>HEY THERE, <span>I'M ADNAN</span></h1>
           </div>
+
+          <!-- Quote / info -->
           <div class="info">
             <h2>
-              I bring imagination to life,
-              <span>crafting designs that inspire</span>
+              I bring imagination to<span>life, crafting designs</span>that
+              inspire
             </h2>
           </div>
-          <img src="/photos/B.png" alt="background " />
 
-          <img src="/photos/vv.png" alt="person" class="person" />
+          <!-- Notebook background image — gives the container its size -->
+          <img
+            src="/photos/B.png"
+            alt="notebook background"
+            class="notebook-bg"
+          />
+
+          <!-- Person image — centered on the notebook -->
+          <img src="/photos/vv.png" alt="Adnan Anjum" class="person" />
+
+          <!-- LinkedIn link -->
+          <div class="gmail">
+            <i class="fa-brands fa-linkedin" id="linked"></i>
+            <a href="https://www.linkedin.com/in/adnan-anjum-196a373a1/"
+              >Adnan Anjum</a
+            >
+          </div>
+          <div class="git">
+            <i class="fa-brands fa-github" id="linked"></i>
+            <a href="github.com/anjumhere">Anjumhere</a>
+          </div>
+          <!-- Experience badge -->
+          <div class="exp">
+            <i class="fa-solid fa-star" id="star"></i>
+            <div class="number">2</div>
+            <div class="text">
+              <span>YEARS</span>
+              <span>EXPERIENCE</span>
+            </div>
+          </div>
+        </div>
+        <div class="work" id="about">
+          <card-section>
+            <div class="card1">
+              <i class="fa-solid fa-palette" id="design"></i>
+              <div class="data">
+                <h2>Website Designs</h2>
+                <p>27 Projects</p>
+              </div>
+            </div>
+            <div class="card1">
+              <i class="fa-brands fa-js" id="design1"></i>
+              <div class="data">
+                <h2>Javascript Projects</h2>
+                <p>30 Projects</p>
+              </div>
+            </div>
+            <div class="card1">
+              <i class="fa-solid fa-tablet-button" id="design2"></i>
+              <div class="data">
+                <h2>Website Designs</h2>
+                <p>27 Projects</p>
+              </div>
+            </div>
+          </card-section>
         </div>
       </main>
-
-      <!-- ===== FOOTER (Clean Canvas) ===== -->
-      <footer>
-        <!-- Add your footer content here -->
-      </footer>
     </div>
   </body>
 </html>
