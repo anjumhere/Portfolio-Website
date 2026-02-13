@@ -236,7 +236,7 @@ main {
 /* ── Intro text (top-left of notebook) ── */
 .intro {
   position: absolute;
-  top: 38%;
+  top: 25%;
   left: 10%;
   z-index: 5;
   max-width: 36%;
@@ -282,7 +282,7 @@ main {
 /* ── Person image (center of notebook) ── */
 .profile .person {
   position: absolute;
-  top: 50%;
+  top: 40%;
   left: 50%;
   transform: translate(-50%, -50%);
   z-index: 10;
@@ -306,7 +306,7 @@ main {
   gap: 21px;
   border: 2px solid rgb(207, 207, 207);
   position: absolute;
-  top: 85%;
+  top: 75%;
   left: 20%;
   height: 70px;
   width: 600px;
@@ -345,6 +345,8 @@ main {
   justify-content: center;
   align-items: center;
   gap: 5px;
+  border-left: 1px solid grey;
+  padding: 0 5px;
 }
 .center:hover {
   transform: scale(1.1);
